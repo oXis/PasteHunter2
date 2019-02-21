@@ -1,0 +1,4 @@
+type,regex,urgent,desc
+keywords,emule,0,sharing
+keywords,TPB,0,aaargh!
+linux,[a-zA-Z]+buntu,0,Ubuntu flavor
