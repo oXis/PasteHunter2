@@ -75,9 +75,9 @@ class DigestPaste():
         parser = paste["parser"]
         pId = parser.getId(paste)
 
-        logger.info("\t[*] Paste %s from %s",
-                    pId,
-                    paste["parser"].name)
+        logger.debug("\t[*] Paste %s from %s",
+                     pId,
+                     paste["parser"].name)
 
         content = parser.getPasteContent(paste)
 

@@ -2,6 +2,7 @@ import logging
 
 from pastebinParser import PastebinParser
 from parsers.slexyParser import SlexyParser
+from parsers.gistParser import GistParser
 
 logger = logging.getLogger("logger")
 
@@ -15,7 +16,10 @@ class PhParser():
                                        "Pastebin"),
                         SlexyParser("https://slexy.org/recent",
                                     120,
-                                    "Slexy")
+                                    "Slexy"),
+                        GistParser('https://gist.github.com/discover',
+                                   60,
+                                   'Gist')
                         ]
 
     def run(self):
