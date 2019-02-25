@@ -19,7 +19,7 @@ class PhParser():
                                     120,
                                     "Slexy"),
                         GistParser('https://gist.github.com/discover',
-                                   60,
+                                   50,
                                    'Gist'),
                         CodepadParser('http://codepad.org/recent',
                                       60,
