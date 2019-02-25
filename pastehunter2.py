@@ -43,13 +43,13 @@ def sendReports(reports, phone, email):
     email_body = "The following are keyword hits that were just found:\n\n"
 
     msg = []
+    # both email and text if urgent
     for report in reports:
-        if not report.urgent:
-            email_body += str(report)
-            email_body += "\n---\n"
-        else:
+        email_body += str(report)
+        email_body += "\n---\n"
+        if report.urgent:
             msg.append(report.getURL())
-
+    
     if msg: # 10
         sendtext(msg, phone)
 

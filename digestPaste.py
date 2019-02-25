@@ -16,7 +16,7 @@ class Filter():
 
         for key, value in kargs.items():
             if key == "urgent":
-                value = bool(value)
+                value = int(value) # and NOT bool...
             elif key == "regex":
                 value = re.compile(value)
 
