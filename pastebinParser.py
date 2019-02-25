@@ -34,7 +34,7 @@ class PastebinParser():
 
         self.lastPasteList = oldPastList.union(newPasteList)
 
-        logger.info("%s - %s new paste(s) - Next pull in %s seconds",
+        logger.info("%s - %s new paste(s) - Next fetch in %s seconds",
                     self.name, len(newPasteList), self.maxTime)
 
         ret = []

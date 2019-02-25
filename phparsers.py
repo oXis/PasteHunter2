@@ -3,6 +3,7 @@ import logging
 from pastebinParser import PastebinParser
 from parsers.slexyParser import SlexyParser
 from parsers.gistParser import GistParser
+from parsers.codepadParser import CodepadParser
 
 logger = logging.getLogger("logger")
 
@@ -19,7 +20,10 @@ class PhParser():
                                     "Slexy"),
                         GistParser('https://gist.github.com/discover',
                                    60,
-                                   'Gist')
+                                   'Gist'),
+                        CodepadParser('http://codepad.org/recent',
+                                      60,
+                                      'Codepad')
                         ]
 
     def run(self):
