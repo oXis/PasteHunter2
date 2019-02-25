@@ -4,6 +4,7 @@ PasteHunter2 is a general parser for websites like Pastebin. I tried to make it 
 # Deps
 - Python 3
 - clockwork [https://pypi.org/project/Clockwork/](clockwork)
+- bs4
 - argparse
 - configparser
 - logging
