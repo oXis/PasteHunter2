@@ -2,6 +2,8 @@ import time
 import logging
 import requests
 
+logger = logging.getLogger("logger")
+
 
 # pylint: disable=R0201
 class PastebinParser():
@@ -22,7 +24,7 @@ class PastebinParser():
             # poll the Pastebin API
             response = requests.get(self.apiUrl)
         except Exception as e:
-            logging.warning("%s error -> %s", self.name, e)
+            logger.warning("%s error -> %s", self.name, e)
 
         response = response.json()
 
@@ -32,7 +34,7 @@ class PastebinParser():
 
         self.lastPasteList = oldPastList.union(newPasteList)
 
-        logging.info("%s - %s new paste(s)", self.name, len(newPasteList))
+        logger.info("%s - %s new paste(s)", self.name, len(newPasteList))
 
         ret = []
         for p in response:
@@ -49,7 +51,7 @@ class PastebinParser():
         try:
             paste = paste.content.decode('utf-8')
         except UnicodeDecodeError:
-            logging.error("Cannot decode %s for parser %s", pasteJson["key"], self.name)
+            logger.error("Cannot decode %s for parser %s", pasteJson["key"], self.name)
             paste = ""
 
         return paste

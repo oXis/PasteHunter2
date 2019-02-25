@@ -14,9 +14,11 @@ import phparsers
 import digestPaste
 from config import config, clockworkapi
 
+logger = logging.getLogger("logger")
+
 
 def exit_gracefully(*_):
-    logging.info("SIGINT caught, Waiting for last paste to be parsed")
+    logger.info("SIGINT caught, Waiting for last paste to be parsed")
     ev.set()
 
 
@@ -27,10 +29,10 @@ def sendtext(msg, phone):
                                 message=m)
         response = clockworkapi.send(message)
         if response.success:
-            logging.warning("Urgent text sent!")
+            logger.warning("Urgent text sent!")
         else:
-            logging.error("Something wrong with texting -> (%s)",
-                          response.error_message)
+            logger.error("Something wrong with texting -> (%s)",
+                         response.error_message)
 
 
 def sendReports(reports, phone, email):
@@ -66,7 +68,7 @@ def sendReports(reports, phone, email):
                     alert_email_account, msg.as_string())
     server.quit()
 
-    logging.info("Report sent!")
+    logger.info("Report sent!")
 
 
 def updateJson(filterFile, ftype, regex, urgent, desc):
@@ -75,7 +77,7 @@ def updateJson(filterFile, ftype, regex, urgent, desc):
         try:
             jsonFilters = json.loads(fin.read())
         except json.decoder.JSONDecodeError as e:
-            logging.error("Malformed json file %s", e)
+            logger.error("Malformed json file %s", e)
 
     if ftype in jsonFilters:
         jsonFilters[ftype].append({"regex": regex,
@@ -104,7 +106,7 @@ def loadCsv(csv, filterFile):
             assert "desc" in headers
             assert "urgent" in headers
         except AssertionError:
-            logging.error("CSV does not contain a proper header.")
+            logger.error("CSV does not contain a proper header.")
             sys.exit()
 
         iType = headers.index("type")
@@ -112,7 +114,7 @@ def loadCsv(csv, filterFile):
         for line in fin:
             line = line.strip().split(",")
             if len(line) != len(headers):
-                logging.error("Missing column detected!")
+                logger.error("Missing column detected!")
                 continue
 
             if line[iType] in jsonFilters:
@@ -140,6 +142,9 @@ def main(args):
     if args.add:
         updateJson(args.filters, args.ftype, args.regex, args.urgent, args.desc)
         return 0
+
+    if args.verbose:
+        logger.propagate = True
 
     mainParser = phparsers.PhParser()
     digest = digestPaste.DigestPaste(args.filters)
@@ -171,7 +176,7 @@ def main(args):
         digest.update()
         time.sleep(0.1)
 
-    logging.info("bye!")
+    logger.info("bye!")
 
     return 0
 

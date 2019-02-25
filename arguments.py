@@ -1,9 +1,7 @@
 import sys
 import re
-import logging
 import argparse
-import configparser
-from config import *
+from config import config
 
 
 def EmailAddress(v):
@@ -41,6 +39,12 @@ def getParser():
                         dest="delayReport",
                         type=int,
                         default=config['report']['delay'])
+
+    parser.add_argument("-v", "--verbose",
+                        help="Print logs in the terminal",
+                        action="store_true",
+                        dest="verbose",
+                        default=False)
 
     parser.add_argument("--loadcsv",
                         help="Update filter from CSV file. Exit when done.",
