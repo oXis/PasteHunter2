@@ -19,7 +19,7 @@ class Report():
         ret = ""
         ret += "User     --> " + self.parser.getUser(self.meta) + "\n"
         ret += "URL      --> " + self.parser.getURL(self.meta) + "\n"
-        ret += "Matches  --> " + str(f.desc for f in self.matches)
+        ret += "Matches  --> " + str([f.desc for f in self.matches])
 
         return ret
 
