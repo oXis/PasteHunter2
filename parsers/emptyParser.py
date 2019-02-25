@@ -57,7 +57,8 @@ class EmptyParser():
 
         self.lastPasteList = oldPastList.union(newPasteList)
 
-        logger.info("%s - %s new paste(s)", self.name, len(newPasteList))
+        logger.info("%s - %s new paste(s) - Next pull in %s seconds",
+                    self.name, len(newPasteList), self.maxTime)
 
         ret = []
         for p in response:
