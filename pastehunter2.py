@@ -157,6 +157,7 @@ def main(args):
                     result = digest.digest(paste)
                     if result is not None:
                         reports.append(result)
+                        result.save()
 
         currentTime = time.time()
         if currentTime - lastTime > reportTime:

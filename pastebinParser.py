@@ -49,7 +49,7 @@ class PastebinParser():
         try:
             paste = paste.content.decode('utf-8')
         except UnicodeDecodeError:
-            logging.error("Cannot decode %s", pasteJson["key"])
+            logging.error("Cannot decode %s for parser %s", pasteJson["key"], self.name)
             paste = ""
 
         return paste
