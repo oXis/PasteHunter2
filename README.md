@@ -6,7 +6,7 @@ PasteHunter2 is a general parser for websites like Pastebin. I tried to make it 
 - clockwork [https://pypi.org/project/Clockwork/](clockwork)
 - argparse
 - configparser
-- loggin
+- logging
 
 # Usage
 The script reads a config file `config.ini`. Copy `config.sample.ini` to `config.ini` after editing the file. The fields are not checked for (yet!) so be careful when updating the config file. 
