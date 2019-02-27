@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import copy
+from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
@@ -28,7 +29,7 @@ class GistParser(EmptyParser):
 
             for a2 in html_soup2.find_all("a"):
                 if "raw" in a2["href"]:
-                    tmp["scrape_url"] = "https://gist.githubusercontent.com" + a2["href"]
+                    tmp["scrape_url"] = urljoin(self.apiUrl, a2["href"])
                     break # no need to keep going
 
             ret.append(tmp)

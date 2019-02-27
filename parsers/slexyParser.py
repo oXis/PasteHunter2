@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import copy
+from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
@@ -31,7 +32,7 @@ class SlexyParser(EmptyParser):
 
             for a in html_soup2.find_all("a"):
                 if "raw" in a["href"]:
-                    tmp["scrape_url"] = "https://slexy.org" + a["href"]
+                    tmp["scrape_url"] = urljoin(self.apiUrl, a["href"])
                     break # no need to keep going
 
             ret.append(tmp)
